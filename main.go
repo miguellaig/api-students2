@@ -36,20 +36,28 @@ func main() {
 func getStudents(c echo.Context) error {
 	return c.String(http.StatusOK, "List of all students")
 }
+
 func createStudent(c echo.Context) error {
-	db.AddStudent()
+	student := db.Student{}
+	if err := c.Bind(&student); err != nil {
+		return err
+	}
+	db.AddStudent(student)
 	return c.String(http.StatusOK, "Create student")
 }
+
 func getStudent(c echo.Context) error {
 	id := c.Param("id")
 	getStud := fmt.Sprintf("Get %s student:", id)
 	return c.String(http.StatusOK, getStud)
 }
+
 func updateStudent(c echo.Context) error {
 	id := c.Param("id")
 	updateStud := fmt.Sprintf("Update %s student:", id)
 	return c.String(http.StatusOK, updateStud)
 }
+
 func deleteStudent(c echo.Context) error {
 	id := c.Param("id")
 	deleteStud := fmt.Sprintf("Delete %s student:", id)
