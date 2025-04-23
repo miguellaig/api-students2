@@ -63,3 +63,6 @@ func (s *StudentHandler) GetStudent(id int) (Student, error) {
 	// err := s.DB.Find(&students).Error
 	return student, err.Error
 }
+func (s *StudentHandler) UpdateStudent(updateStudent Student) error {
+	return s.DB.Save(&updateStudent).Error
+}
