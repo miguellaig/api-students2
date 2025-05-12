@@ -5,9 +5,11 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/miguellaig/api-students2/db"
+	_ "github.com/miguellaig/api-students2/docs"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 type API struct {
@@ -15,6 +17,12 @@ type API struct {
 	DB   *db.StudentHandler
 }
 
+// @title Student API
+// @version 1.0
+// @description This is a sample server Student API
+// @host localhost:8080
+// @BasePath /
+// @schemes http
 func NewServer() *API {
 	// Echo instance
 	e := echo.New()
@@ -47,4 +55,5 @@ func (api *API) ConfigureRoutes() {
 	api.Echo.GET("/students/:id", api.getStudent)
 	api.Echo.PUT("/students/:id", api.updateStudent)
 	api.Echo.DELETE("/students/:id", api.deleteStudent)
+	api.Echo.GET("/swagger/*", echoSwagger.WrapHandler)
 }
