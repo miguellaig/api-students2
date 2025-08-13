@@ -1,0 +1,28 @@
+# Binários do Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Pastas de build
+/bin/
+/build/
+
+# Módulos e dependências
+/vendor/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Bancos de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
